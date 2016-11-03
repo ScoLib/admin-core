@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Sco\Http\Controllers\Admin\Auth;
+namespace Sco\Admin\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Sco\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 

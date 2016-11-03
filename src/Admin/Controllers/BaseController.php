@@ -1,17 +1,17 @@
 <?php
 
 
-namespace Sco\Http\Controllers\Admin;
+namespace Sco\Admin\Controllers;
 
 use Auth, Route, Breadcrumbs, Event;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Auth\Events\Login;
-use Sco\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Sco\Repositories\PermissionRepository;
+use Sco\Admin\Repositories\PermissionRepository;
 
 /**
  * 后台基础控制器

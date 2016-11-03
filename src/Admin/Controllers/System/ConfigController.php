@@ -1,18 +1,18 @@
 <?php
 
-namespace Sco\Http\Controllers\Admin\System;
+namespace Sco\Admin\Controllers\System;
 
 use Illuminate\Http\Request;
-use Sco\Http\Controllers\Admin\BaseController;
-use Sco\Repositories\ConfigRepository;
+use Sco\Admin\Controllers\BaseController;
+use Sco\Admin\Repositories\ConfigRepository;
 
 /**
- * 站点设置
+ * 配置设置
  * Class SiteController
  *
  * @package Sco\Http\Controllers\Admin\System
  */
-class SiteController extends BaseController
+class ConfigController extends BaseController
 {
 
     /**

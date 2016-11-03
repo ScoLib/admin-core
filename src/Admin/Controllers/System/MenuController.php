@@ -1,10 +1,10 @@
 <?php
 
-namespace Sco\Http\Controllers\Admin\System;
+namespace Sco\Admin\Controllers\System;
 
-use Sco\Http\Controllers\Admin\BaseController;
+use Sco\Admin\Controllers\BaseController;
 use Illuminate\Http\Request;
-use Sco\Repositories\PermissionRepository;
+use Sco\Admin\Repositories\PermissionRepository;
 
 /**
  * 菜单管理

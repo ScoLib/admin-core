@@ -1,6 +1,6 @@
 <?php
 
-namespace Sco\Models;
+namespace Sco\Admin\Models;
 
 
 use Zizaco\Entrust\EntrustRole;

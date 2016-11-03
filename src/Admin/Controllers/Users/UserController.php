@@ -1,10 +1,10 @@
 <?php
-namespace Sco\Http\Controllers\Admin\Users;
+namespace Sco\Admin\Controllers\Users;
 
 use Illuminate\Http\Request;
-use Sco\Http\Controllers\Admin\BaseController;
-use Sco\Repositories\RoleRepository;
-use Sco\Repositories\UserRepository;
+use Sco\Admin\Controllers\BaseController;
+use Sco\Admin\Repositories\RoleRepository;
+use Sco\Admin\Repositories\UserRepository;
 
 /**
  * 用户管理

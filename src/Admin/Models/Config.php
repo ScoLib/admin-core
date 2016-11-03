@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Sco\Models;
+namespace Sco\Admin\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
