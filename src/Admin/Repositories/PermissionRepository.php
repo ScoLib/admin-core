@@ -6,7 +6,7 @@ use Bosnadev\Repositories\Eloquent\Repository;
 use Bosnadev\Repositories\Traits\CacheableTrait;
 use Illuminate\Http\Request;
 use Sco\Admin\Models\Permission;
-use ScoLib\Tree\Traits\TreeTrait;
+use Sco\Tree\Traits\TreeTrait;
 
 /**
  * Class PermissionRepository
