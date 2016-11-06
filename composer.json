@@ -22,7 +22,7 @@
         "classmap": [
             "src/database/seeds/AdminTableSeeder.php",
             "src/database/seeds/ConfigsTableSeeder.php",
-            "src/database/seeds/RbacTableSeeder.php",
+            "src/database/seeds/RbacTableSeeder.php"
         ]
     }
 }
