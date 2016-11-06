@@ -19,6 +19,10 @@
         "psr-4": {
             "Sco\\Admin\\": "src/Admin"
         },
-        "classmap": ["src/database/seeds/AdminTableSeeder.php"]
+        "classmap": [
+            "src/database/seeds/AdminTableSeeder.php",
+            "src/database/seeds/ConfigsTableSeeder.php",
+            "src/database/seeds/RbacTableSeeder.php",
+        ]
     }
 }
