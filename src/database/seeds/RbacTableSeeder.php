@@ -13,15 +13,15 @@ class RbacTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insertGetId([
-            'username'   => 'admin',
+            'name'       => 'admin',
             'email'      => 'admin@admin.com',
             'password'   => bcrypt('123456'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
 
-        $database = file_get_contents(base_path('database/seeds') . '/' . 'rbac.sql');
-        $prefix = env('DB_PREFIX', 'sco_');
+        $database = file_get_contents(__DIR__ . '/' . 'rbac.sql');
+        $prefix   = env('DB_PREFIX', '');
         $database = str_replace('sco_', $prefix, $database);
 
         DB::connection()->getPdo()->exec($database);

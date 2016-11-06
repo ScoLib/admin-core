@@ -7,6 +7,10 @@ use Illuminate\Support\ServiceProvider;
 class AdminServiceProvider extends ServiceProvider
 {
 
+    protected $commands = [
+        \Sco\Admin\Commands\Install::class,
+    ];
+
     public function getBasePath()
     {
         return dirname(dirname(__DIR__));
@@ -26,9 +30,12 @@ class AdminServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom($this->getBasePath() . '/database/migrations');
-            $this->publishes([
+            /*$this->publishes([
                 $this->getBasePath() . '/resources' => base_path('resources')
-            ], 'shop-views');
+            ], 'shop-views');*/
+            $this->publishes([
+                $this->getBasePath() . '/install' => base_path()
+            ]);
         }
     }
 
@@ -41,5 +48,7 @@ class AdminServiceProvider extends ServiceProvider
     {
         $this->app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
         $this->app->register(\Bosnadev\Repositories\Providers\RepositoryProvider::class);
+
+        $this->commands($this->commands);
     }
 }
