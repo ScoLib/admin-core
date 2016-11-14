@@ -6,7 +6,7 @@ namespace Sco\Admin\Controllers;
 use Auth, Route, Breadcrumbs, Event;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Auth\Events\Login;
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -28,8 +28,6 @@ class BaseController extends Controller
 
     public function __construct()
     {
-        parent::__construct();
-
         Event::listen([Authenticated::class, Login::class], function ($event) {
             $user = $event->user;
             if ($user && !request()->ajax()) {

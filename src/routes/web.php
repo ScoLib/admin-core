@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin',], function () {
+Route::group(['prefix' => 'admin'], function () {
     //登录页
     Route::get('login', 'Auth\AuthController@showLoginForm')->name('admin.login');
     //登录提交
@@ -15,10 +15,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin',], function () {
         // 系统管理
         Route::group(['prefix' => 'system', 'namespace' => 'System'], function () {
             // 站点设置
-            Route::get('site', 'SiteController@getIndex')->name('admin.system.site');
+            Route::get('config', 'ConfigController@getIndex')->name('admin.system.config');
 
             // 保存设置
-            Route::post('site/save', 'SiteController@postIndex')->name('admin.system.site.save');
+            Route::post('config/save', 'ConfigController@postIndex')->name('admin.system.config.save');
 
             // 菜单管理
             Route::get('menu', 'MenuController@getIndex')->name('admin.system.menu');

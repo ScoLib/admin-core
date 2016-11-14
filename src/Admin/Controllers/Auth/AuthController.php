@@ -5,11 +5,11 @@ namespace Sco\Admin\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Auth;
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
     use AuthenticatesUsers, ValidatesRequests;
 
@@ -24,7 +24,6 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        parent::__construct();
         $this->middleware('guest:admin', ['except' => 'logout']);
     }
 

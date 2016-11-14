@@ -46,6 +46,7 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register(RouteServiceProvider::class);
         $this->app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
         $this->app->register(\Bosnadev\Repositories\Providers\RepositoryProvider::class);
 
