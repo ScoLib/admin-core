@@ -1,1 +1,1 @@
-# admin-core
+# scoAdmin
