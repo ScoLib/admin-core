@@ -24,7 +24,7 @@ class AuthController extends BaseController
 
     public function __construct()
     {
-        $this->middleware('guest:admin', ['except' => 'logout']);
+        $this->middleware('guest.scoadmin', ['except' => 'logout']);
     }
 
     public function showLoginForm()
@@ -57,7 +57,7 @@ class AuthController extends BaseController
      */
     protected function guard()
     {
-        return Auth::guard('admin');
+        return Auth::guard('scoadmin');
     }
 
     /**

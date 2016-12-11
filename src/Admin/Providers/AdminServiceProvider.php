@@ -2,6 +2,7 @@
 
 namespace Sco\Admin\Providers;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider
@@ -23,10 +24,26 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+
+
         // 后台模板目录
-        $this->loadViewsFrom($this->getBasePath() . 'resources/admin', 'admin');
+        $this->loadViewsFrom($this->getBasePath() . '/resources/admin', 'admin');
         // 后台语言包目录
-        $this->loadTranslationsFrom($this->getBasePath() .  'resources/lang', 'Admin');
+        $this->loadTranslationsFrom($this->getBasePath() .  '/resources/lang', 'Admin');
+        config([
+            'auth.guards.scoadmin' => [
+                'driver' => 'session',
+                'provider' => 'scoadmin',
+            ],
+            'auth.providers.scoadmin' => [
+                'driver' => 'eloquent',
+                'model' => \Sco\Admin\Models\User::class
+            ],
+        ]);
+
+        $this->app->make(Router::class)->middleware('auth.scoadmin', \Sco\Admin\Middleware\AdminAuthenticate::class);
+        $this->app->make(Router::class)->middleware('guest.scoadmin', \Sco\Admin\Middleware\RedirectIfAuthenticated::class);
 
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom($this->getBasePath() . '/database/migrations');

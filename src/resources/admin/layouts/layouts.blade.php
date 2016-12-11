@@ -102,11 +102,11 @@
 @include('admin::layouts.partials.script')
 
 <!-- SlimScroll -->
-<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ asset('sco-admin/js/jquery.slimscroll-1.3.8.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ elixir('js/admin.min.js', '') }}"></script>
+<script src="{{ asset('sco-admin/js/admin.js') }}"></script>
 
-<script src="{{ asset('layer/layer.js') }}"></script>
+<script src="{{ asset('sco-admin/layer-v3.0.1/layer.js') }}"></script>
 @yield('script')
 </body>
 </html>

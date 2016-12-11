@@ -8,7 +8,7 @@ Route::group(['prefix' => 'admin'], function () {
     //退出
     Route::get('logout', 'Auth\AuthController@logout')->name('admin.logout');
 
-    Route::group(['middleware' => 'auth:admin'], function () {
+    Route::group(['middleware' => 'auth.scoadmin'], function () {
         // 控制台
         Route::get('/', 'BaseController@index')->name('admin.index');
 
