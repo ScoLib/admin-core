@@ -12,6 +12,11 @@ class AdminServiceProvider extends ServiceProvider
         \Sco\Admin\Commands\Install::class,
     ];
 
+    protected $middlewares = [
+        'auth.scoadmin'  => \Sco\Admin\Middleware\AdminAuthenticate::class,
+        'guest.scoadmin' => \Sco\Admin\Middleware\RedirectIfAuthenticated::class
+    ];
+
     public function getBasePath()
     {
         return dirname(dirname(__DIR__));
@@ -24,26 +29,13 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
-
+        $this->loadAuthConfig();
+        $this->registerMiddleware();
 
         // 后台模板目录
         $this->loadViewsFrom($this->getBasePath() . '/resources/admin', 'admin');
         // 后台语言包目录
-        $this->loadTranslationsFrom($this->getBasePath() .  '/resources/lang', 'Admin');
-        config([
-            'auth.guards.scoadmin' => [
-                'driver' => 'session',
-                'provider' => 'scoadmin',
-            ],
-            'auth.providers.scoadmin' => [
-                'driver' => 'eloquent',
-                'model' => \Sco\Admin\Models\User::class
-            ],
-        ]);
-
-        $this->app->make(Router::class)->middleware('auth.scoadmin', \Sco\Admin\Middleware\AdminAuthenticate::class);
-        $this->app->make(Router::class)->middleware('guest.scoadmin', \Sco\Admin\Middleware\RedirectIfAuthenticated::class);
+        $this->loadTranslationsFrom($this->getBasePath() . '/resources/lang', 'Admin');
 
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom($this->getBasePath() . '/database/migrations');
@@ -51,7 +43,8 @@ class AdminServiceProvider extends ServiceProvider
                 $this->getBasePath() . '/resources' => base_path('resources')
             ], 'shop-views');*/
             $this->publishes([
-                $this->getBasePath() . '/install' => base_path()
+                $this->getBasePath() . '/config/scoadmin.php' => config_path('scoadmin.php'),
+                $this->getBasePath() . '/install'             => base_path()
             ]);
         }
     }
@@ -63,10 +56,36 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
         $this->app->register(\Bosnadev\Repositories\Providers\RepositoryProvider::class);
 
         $this->commands($this->commands);
+
+        $this->mergeConfigFrom($this->getBasePath() . '/config/scoadmin.php', 'scoadmin');
+
+    }
+
+    protected function loadAuthConfig()
+    {
+        config([
+            'auth.guards.scoadmin'    => [
+                'driver'   => 'session',
+                'provider' => 'scoadmin',
+            ],
+            'auth.providers.scoadmin' => [
+                'driver' => 'eloquent',
+                'model'  => config('scoadmin.user')
+            ],
+        ]);
+    }
+
+    protected function registerMiddleware()
+    {
+        $router = $this->app['router'];
+        foreach ($this->middlewares as $key => $middleware) {
+            $router->middleware($key, $middleware);
+        }
     }
 }
