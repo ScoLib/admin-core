@@ -9,7 +9,7 @@
             <h3 class="box-title">站点设置</h3>
         </div>
         <!-- form start -->
-        <form method="post" id="form-config" action="{{ route('admin.system.site.save') }}"
+        <form method="post" id="form-config" action="{{ route('admin.system.config.save') }}"
               class="form-horizontal">
             <div class="box-body">
                 <div class="form-group margin-l-0 margin-r-0">
@@ -57,7 +57,7 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('sco-admin/js/jquery.validate-1.15.1.min.js') }}"></script>
 
     <script>
         $(function () {

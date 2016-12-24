@@ -32,8 +32,8 @@ class BaseController extends Controller
             $user = $event->user;
             if ($user && !request()->ajax()) {
                 $this->user = $user;
-                $this->setViewParameter(compact('user'));
-                $this->getLeftMenu();
+                //$this->setViewParameter(compact('user'));
+                //$this->getLeftMenu();
                 //$this->breadcrumbs();
             }
         });
@@ -108,7 +108,7 @@ class BaseController extends Controller
      */
     protected function render($view, $params = [])
     {
-        return parent::render('admin::' . $view, $params);
+        return view('admin::' . $view, $params);
     }
 
 

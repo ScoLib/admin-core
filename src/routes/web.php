@@ -15,7 +15,7 @@ Route::group(['prefix' => 'admin'], function () {
         // 系统管理
         Route::group(['prefix' => 'system', 'namespace' => 'System'], function () {
             // 站点设置
-            Route::get('config', 'ConfigController@getIndex')->name('admin.system.config');
+            Route::get('config', 'ConfigController@getIndex')->name('admin.system.config')->middleware('admin.menu');
 
             // 保存设置
             Route::post('config/save', 'ConfigController@postIndex')->name('admin.system.config.save');

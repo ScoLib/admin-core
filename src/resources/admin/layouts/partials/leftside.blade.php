@@ -27,7 +27,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            @foreach ($leftMenu as $menu)
+            @foreach (request()->get('admin.menu') as $menu)
                 @permission($menu->name)
                 @if ($menu->child->isEmpty())
                     <li class="{{ $currentMenuIds->contains($menu->id) ? 'active' : '' }}">

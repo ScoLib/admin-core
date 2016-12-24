@@ -4,6 +4,7 @@ namespace Sco\Admin\Controllers\System;
 
 use Illuminate\Http\Request;
 use Sco\Admin\Controllers\BaseController;
+use Sco\Admin\Models\Config;
 use Sco\Admin\Repositories\ConfigRepository;
 
 /**
@@ -22,8 +23,8 @@ class ConfigController extends BaseController
      */
     public function getIndex()
     {
-        $configs = app(ConfigRepository::class)->getConfigs();
-        return $this->render('system.site.index', compact('configs'));
+        $configs = (new Config())->getConfigs();
+        return $this->render('system.config.index', compact('configs'));
     }
 
     /**
@@ -36,7 +37,7 @@ class ConfigController extends BaseController
     public function postIndex(Request $request)
     {
         $configs = $request->input('configs');
-        app(ConfigRepository::class)->saveConfigs($configs);
+        (new Config())->saveConfigs($configs);
         return response()->json(success());
     }
 
