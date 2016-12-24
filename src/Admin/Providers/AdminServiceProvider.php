@@ -5,6 +5,9 @@ namespace Sco\Admin\Providers;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ *
+ */
 class AdminServiceProvider extends ServiceProvider
 {
 
@@ -14,7 +17,8 @@ class AdminServiceProvider extends ServiceProvider
 
     protected $middlewares = [
         'auth.scoadmin'  => \Sco\Admin\Middleware\AdminAuthenticate::class,
-        'guest.scoadmin' => \Sco\Admin\Middleware\RedirectIfAuthenticated::class
+        'guest.scoadmin' => \Sco\Admin\Middleware\RedirectIfAuthenticated::class,
+        'admin.menu'     => \Sco\Admin\Middleware\AdminMenu::class,
     ];
 
     public function getBasePath()
@@ -44,7 +48,8 @@ class AdminServiceProvider extends ServiceProvider
             ], 'shop-views');*/
             $this->publishes([
                 $this->getBasePath() . '/config/scoadmin.php' => config_path('scoadmin.php'),
-                $this->getBasePath() . '/install'             => base_path()
+                $this->getBasePath() . '/config/entrust.php'  => config_path('entrust.php'),
+                $this->getBasePath() . '/install/public'      => base_path() . '/public',
             ]);
         }
     }

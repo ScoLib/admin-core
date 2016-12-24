@@ -10,7 +10,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['middleware' => 'auth.scoadmin'], function () {
         // 控制台
-        Route::get('/', 'BaseController@index')->name('admin.index');
+        Route::get('/', 'BaseController@index')->name('admin.index')->middleware('admin.menu');
 
         // 系统管理
         Route::group(['prefix' => 'system', 'namespace' => 'System'], function () {

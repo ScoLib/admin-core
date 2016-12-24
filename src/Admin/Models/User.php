@@ -9,15 +9,13 @@ class User extends Authenticatable
 {
     use EntrustUserTrait;
 
-    protected $primaryKey = 'uid';
-    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'name', 'email', 'password',
     ];
 
     /**

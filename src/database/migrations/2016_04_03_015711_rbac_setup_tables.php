@@ -25,7 +25,7 @@ class RbacSetupTables extends Migration
         // Create table for associating roles to users (Many-to-Many)
         Schema::create('role_user', function (Blueprint $table) {
             $table->engine = "InnoDB COMMENT='角色与用户对应表'";
-            $table->integer('uid')->unsigned()->comment('UID');
+            $table->integer('user_id')->unsigned()->comment('用户ID');
             $table->integer('role_id')->unsigned()->comment('角色ID');
 
             /*$table->foreign('uid')->references('id')->on('users')
@@ -33,7 +33,7 @@ class RbacSetupTables extends Migration
             $table->foreign('role_id')->references('id')->on('roles')
                 ->onUpdate('cascade')->onDelete('cascade');*/
 
-            $table->primary(['uid', 'role_id']);
+            $table->primary(['user_id', 'role_id']);
         });
 
         // Create table for storing permissions
