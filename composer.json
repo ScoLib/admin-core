@@ -12,7 +12,7 @@
         "php": ">=5.6.4",
         "illuminate/support": "^5.3",
         "scolib/tree": "1.*",
-        "zizaco/entrust": "1.8.0-alpha1"
+        "scolib/entrust": "~1.7"
     },
     "autoload": {
         "psr-4": {
