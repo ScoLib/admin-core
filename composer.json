@@ -11,9 +11,8 @@
     "require": {
         "php": ">=5.6.4",
         "illuminate/support": "^5.3",
-        "scolib/entrust": "^5.3",
-        "scolib/repositories": "^1.0",
-        "scolib/tree": "1.*"
+        "scolib/tree": "1.*",
+        "zizaco/entrust": "1.8.0-alpha1"
     },
     "autoload": {
         "psr-4": {
