@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, $guard = null)
     {
-        if (Auth::guard('scoadmin')->check()) {
+        if (Auth::guard(config('scoadmin.guard'))->check()) {
             return redirect()->route('admin.index');
         }
 

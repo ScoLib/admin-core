@@ -1,6 +1,8 @@
 <?php
 
 return [
-    'user' => 'Sco\Admin\Models\User',
-
+    /**
+     * ScoAdmin Authentication Guard Name
+     */
+    'guard' => 'admin',
 ];

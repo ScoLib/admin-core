@@ -2,8 +2,8 @@
 
 namespace Sco\Admin\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Zizaco\Entrust\EntrustServiceProvider;
 
 /**
  *
@@ -33,7 +33,6 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadAuthConfig();
         $this->registerMiddleware();
 
         // 后台模板目录
@@ -63,27 +62,11 @@ class AdminServiceProvider extends ServiceProvider
     {
 
         $this->app->register(RouteServiceProvider::class);
-        $this->app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
-        // $this->app->register(\Bosnadev\Repositories\Providers\RepositoryProvider::class);
 
         $this->commands($this->commands);
 
         $this->mergeConfigFrom($this->getBasePath() . '/config/scoadmin.php', 'scoadmin');
 
-    }
-
-    protected function loadAuthConfig()
-    {
-        config([
-            'auth.guards.scoadmin'    => [
-                'driver'   => 'session',
-                'provider' => 'scoadmin',
-            ],
-            'auth.providers.scoadmin' => [
-                'driver' => 'eloquent',
-                'model'  => config('scoadmin.user')
-            ],
-        ]);
     }
 
     protected function registerMiddleware()

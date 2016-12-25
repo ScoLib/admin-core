@@ -2,14 +2,14 @@
     @foreach ($childs as $child)
         @permission($child->name)
         @if ($child->child->isEmpty())
-            <li class="{{ $currentMenuIds->contains($child->id) ? 'active' : '' }}">
+            <li class="{{ request()->get('currentMenuIds')->contains($child->id) ? 'active' : '' }}">
                 <a href="{{ $child->name == '#' ? '#' : route($child->name) }}">
                     <i class="fa  {{ $child->icon ?: 'fa-circle-o' }}"></i>
                     {{ $child->display_name }}
                 </a>
             </li>
         @else
-            <li class="{{ $currentMenuIds->contains($child->id) ? 'active' : '' }}">
+            <li class="{{ request()->get('currentMenuIds')->contains($child->id) ? 'active' : '' }}">
                 <a href="{{ $child->name == '#' ? '#' : route($child->name) }}">
                     <i class="fa {{ $child->icon ?: 'fa-circle-o' }}"></i>
                     {{ $child->display_name }}

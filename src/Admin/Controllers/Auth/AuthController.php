@@ -57,7 +57,7 @@ class AuthController extends BaseController
      */
     protected function guard()
     {
-        return Auth::guard('scoadmin');
+        return Auth::guard(config('scoadmin.guard'));
     }
 
     /**

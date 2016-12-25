@@ -21,7 +21,7 @@ class AdminAuthenticate
      */
     public function handle(Request $request, Closure $next, $guard = null)
     {
-        $guard = 'scoadmin';
+        $guard = config('scoadmin.guard');
         if (Auth::guard($guard)->guest()) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
@@ -34,7 +34,6 @@ class AdminAuthenticate
 
         Auth::shouldUse($guard);
 
-        //if ($guard == 'sco-admin') {
         if (!$request->user()->can(Route::currentRouteName())) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json(error('您没有权限执行此操作'));
@@ -44,7 +43,6 @@ class AdminAuthenticate
                 return response()->view('admin::errors.403', compact('previousUrl'));
             }
         }
-        //}
 
         return $next($request);
     }

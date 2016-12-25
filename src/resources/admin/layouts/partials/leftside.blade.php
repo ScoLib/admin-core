@@ -30,14 +30,14 @@
             @foreach (request()->get('admin.menu') as $menu)
                 @permission($menu->name)
                 @if ($menu->child->isEmpty())
-                    <li class="{{ $currentMenuIds->contains($menu->id) ? 'active' : '' }}">
+                    <li class="{{ request()->get('currentMenuIds')->contains($menu->id) ? 'active' : '' }}">
                         <a href="{{ $menu->name == '#' ? '#' : route($menu->name) }}">
                             <i class="fa {{ $menu->icon ?: 'fa-folder' }}"></i>
                             <span>{{ $menu->display_name }}</span>
                         </a>
                     </li>
                 @else
-                    <li class="treeview {{ $currentMenuIds->contains($menu->id) ? 'active' : '' }}">
+                    <li class="treeview {{ request()->get('currentMenuIds')->contains($menu->id) ? 'active' : '' }}">
                         <a href="{{ $menu->name == '#' ? '#' : route($menu->name) }}">
                             <i class="fa {{ $menu->icon ?: 'fa-folder' }}"></i>
                             <span>{{ $menu->display_name }}</span>

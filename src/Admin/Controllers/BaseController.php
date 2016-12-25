@@ -26,19 +26,6 @@ class BaseController extends Controller
 
     protected $user;
 
-    public function __construct()
-    {
-        Event::listen([Authenticated::class, Login::class], function ($event) {
-            $user = $event->user;
-            if ($user && !request()->ajax()) {
-                $this->user = $user;
-                //$this->setViewParameter(compact('user'));
-                //$this->getLeftMenu();
-                //$this->breadcrumbs();
-            }
-        });
-    }
-
     /**
      * 后台入口页（控制台）
      *
@@ -47,20 +34,6 @@ class BaseController extends Controller
     public function index()
     {
         return $this->render('index');
-    }
-
-    /**
-     * 左侧菜单
-     */
-    private function getLeftMenu()
-    {
-        $leftMenu = app(PermissionRepository::class)->getMenuList();
-        $parentTree = app(PermissionRepository::class)->getParentTreeAndSelfByName(Route::currentRouteName());
-        $currentMenuIds = 0;
-        if ($parentTree) {
-            $currentMenuIds = $parentTree->pluck('id');
-        }
-        $this->setViewParameter(compact('leftMenu', 'currentMenuIds'));
     }
 
     /**
