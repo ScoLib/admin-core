@@ -10,21 +10,29 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['middleware' => 'auth.scoadmin'], function () {
         // 控制台
-        Route::get('/', 'BaseController@index')->name('admin.index')->middleware('admin.menu');
+        Route::get('/', 'BaseController@index')
+            ->name('admin.index')
+            ->middleware('admin.menu');
 
         // 系统管理
         Route::group(['prefix' => 'system', 'namespace' => 'System'], function () {
             // 站点设置
-            Route::get('config', 'ConfigController@getIndex')->name('admin.system.config')->middleware('admin.menu');
+            Route::get('config', 'ConfigController@getIndex')
+                ->name('admin.system.config')
+                ->middleware('admin.menu');
 
             // 保存设置
-            Route::post('config/save', 'ConfigController@postIndex')->name('admin.system.config.save');
+            Route::post('config/save', 'ConfigController@postIndex')
+                ->name('admin.system.config.save');
 
             // 菜单管理
-            Route::get('menu', 'MenuController@getIndex')->name('admin.system.menu');
+            Route::get('menu', 'MenuController@getIndex')
+                ->name('admin.system.menu')
+                ->middleware('admin.menu');
 
             // 新增菜单
-            Route::get('menu/add/{pid?}', 'MenuController@getAdd')->name('admin.system.menu.add');
+            Route::get('menu/add/{pid?}', 'MenuController@getAdd')
+                ->name('admin.system.menu.add');
 
             // 保存新增菜单
             Route::post('menu/postAdd', 'MenuController@postAdd')
@@ -46,7 +54,9 @@ Route::group(['prefix' => 'admin'], function () {
         //用户管理
         Route::group(['prefix' => 'users', 'namespace' => 'Users'], function () {
             //用户列表
-            Route::get('user', 'UserController@getIndex')->name('admin.users.user');
+            Route::get('user', 'UserController@getIndex')
+                ->name('admin.users.user')
+                ->middleware('admin.menu');
 
             // 添加用户
             Route::get('user/add', 'UserController@getAdd')->name('admin.users.user.add');
@@ -66,7 +76,9 @@ Route::group(['prefix' => 'admin'], function () {
                 ->name('admin.users.user.delete');
 
             //角色管理
-            Route::get('role', 'RoleController@getIndex')->name('admin.users.role');
+            Route::get('role', 'RoleController@getIndex')
+                ->name('admin.users.role')
+                ->middleware('admin.menu');
 
             // 新增角色
             Route::get('role/add', 'RoleController@getAdd')->name('admin.users.role.add');
@@ -83,7 +95,8 @@ Route::group(['prefix' => 'admin'], function () {
 
             // 角色授权
             Route::get('role/{id}/authorize', 'RoleController@getAuthorize')
-                ->name('admin.users.role.authorize');
+                ->name('admin.users.role.authorize')
+                ->middleware('admin.menu');
 
             // 删除角色
             Route::get('role/{id}/delete', 'RoleController@getDelete')

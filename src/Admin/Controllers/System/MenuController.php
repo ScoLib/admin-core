@@ -4,6 +4,7 @@ namespace Sco\Admin\Controllers\System;
 
 use Sco\Admin\Controllers\BaseController;
 use Illuminate\Http\Request;
+use Sco\Admin\Models\Permission;
 use Sco\Admin\Repositories\PermissionRepository;
 
 /**
@@ -22,7 +23,7 @@ class MenuController extends BaseController
      */
     public function getIndex()
     {
-        $menus = app(PermissionRepository::class)->getMenuTreeList();
+        $menus = (new Permission())->getMenuTreeList();
 
         return $this->render('system.menu.index', compact('menus'));
     }

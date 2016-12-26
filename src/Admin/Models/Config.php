@@ -19,28 +19,28 @@ class Config extends Model
 
     protected $fillable = ['name', 'value'];
 
-    private $configs = null;
+    private static $configs = null;
 
     /**
      * 获取配置
      *
      * @return array
      */
-    public function getConfigs()
+    public static function getConfigs()
     {
-        if ($this->configs) {
-            return $this->configs;
+        if (self::$configs) {
+            return self::$configs;
         }
 
-        $this->configs = Cache::rememberForever('configs', function () {
+        self::$configs = Cache::rememberForever('configs_list', function () {
             $collection = collect();
-            $this->all()->each(function ($item) use ($collection) {
+            self::all()->each(function ($item) use ($collection) {
                 $collection->put($item->name, $item->value);
             });
             return $collection->all();
         });
 
-        return $this->configs;
+        return self::$configs;
 
     }
 
@@ -63,14 +63,10 @@ class Config extends Model
         return true;
     }
 
-    /**
-     * 刷新配置缓存文件
-     */
-    private function flushConfigFile()
+    public static function value($name)
     {
-        $configs = $this->getConfigs();
-        $file    = config_path('sco.php');
-        file_put_contents($file, sprintf('<?php return %s;', var_export($configs, true)));
+        $configs = self::getConfigs();
+        return isset($configs[$name]) ? $configs[$name] : '';
     }
 
 }

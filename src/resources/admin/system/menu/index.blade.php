@@ -58,7 +58,7 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/admin/system.menu.js') }}"></script>
+    <script src="{{ asset('sco-admin/js/admin.system.menu.js') }}"></script>
 
     <script></script>
 @endsection

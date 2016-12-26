@@ -23,7 +23,7 @@ class ConfigController extends BaseController
      */
     public function getIndex()
     {
-        $configs = (new Config())->getConfigs();
+        $configs = Config::getConfigs();
         return $this->render('system.config.index', compact('configs'));
     }
 
