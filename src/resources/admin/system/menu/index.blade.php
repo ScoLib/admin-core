@@ -5,8 +5,7 @@
 @section('right_button')
     <div class="pull-right">
         @permission('admin.system.menu.add')
-        <button type="button" class="btn btn-default" title="添加菜单"
-                data-toggle="modal" data-target="#menu-add" v-on:click="createMenu">
+        <button type="button" class="btn btn-default" title="添加菜单"  v-on:click="createMenu">
             <span class="fa fa-plus"></span> 添加菜单
         </button>
         @endpermission
@@ -36,8 +35,8 @@
                         <td>{!! $menu->icon ? '<i class="fa ' . $menu->icon . '"></i>' : '' !!}</td>
                         <td>{{ $menu->sort }}</td>
                         <td>
-                            <a href="{{ route('admin.system.menu.edit', ['id' => $menu->id]) }}"
-                               class="btn btn-default btn-xs"><i class="fa fa-pencil"></i> 编辑</a>
+                            <button data-url="{{ route('admin.system.menu.edit', ['id' => $menu->id]) }}"
+                               class="btn btn-default btn-xs" v-on:click="editMenu"><i class="fa fa-pencil"></i> 编辑</button>
                             <a class="btn btn-danger btn-xs ajax-get"
                                href="{{ route('admin.system.menu.delete', ['id' => $menu->id]) }}"
                                data-confirm="确定要删除？">

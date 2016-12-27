@@ -75,9 +75,10 @@ class MenuController extends BaseController
      */
     public function getEdit($id)
     {
-        $menu  = app(PermissionRepository::class)->find($id);
-        $menus = app(PermissionRepository::class)->getMenuTreeList();
-        return $this->render('system.menu.edit', compact('menu', 'menus'));
+        $menu  = Permission::find($id);
+        $menus = (new Permission)->getMenuTreeList();
+        return response()->json(success('ok', compact('menu', 'menus')));
+        //return $this->render('system.menu.edit', compact('menu', 'menus'));
     }
 
     /**
