@@ -70,8 +70,8 @@ INSERT INTO `sco_permission_role` VALUES ('34', '1');
 -- ----------------------------
 INSERT INTO `sco_permissions` VALUES ('1', '0', 'fa-dashboard', '控制台', 'admin.index', '1', '1', '控制台', '2016-08-05 16:50:19', '2016-08-05 16:50:19');
 INSERT INTO `sco_permissions` VALUES ('2', '0', 'fa-edit', '系统管理', '#', '1', '1', '系统管理', '2016-08-05 16:50:19', '2016-08-05 16:50:19');
-INSERT INTO `sco_permissions` VALUES ('3', '2', 'fa-gear', '站点设置', 'admin.system.site', '1', '1', '站点设置', '2016-08-05 16:50:19', '2016-08-05 16:50:19');
-INSERT INTO `sco_permissions` VALUES ('4', '3', '', '保存设置', 'admin.system.site.save', '0', '1', '保存设置', '2016-08-05 16:50:19', '2016-08-05 16:50:19');
+INSERT INTO `sco_permissions` VALUES ('3', '2', 'fa-gear', '站点设置', 'admin.system.config', '1', '1', '站点设置', '2016-08-05 16:50:19', '2016-08-05 16:50:19');
+INSERT INTO `sco_permissions` VALUES ('4', '3', '', '保存设置', 'admin.system.config.save', '0', '1', '保存设置', '2016-08-05 16:50:19', '2016-08-05 16:50:19');
 INSERT INTO `sco_permissions` VALUES ('5', '2', 'fa-link', '后台菜单', 'admin.system.menu', '1', '1', '', '2016-08-05 16:50:19', '2016-08-05 16:50:19');
 INSERT INTO `sco_permissions` VALUES ('6', '5', '', '添加菜单', 'admin.system.menu.add', '0', '1', '', '2016-08-05 16:50:19', '2016-08-05 16:50:19');
 INSERT INTO `sco_permissions` VALUES ('7', '5', ' ', '保存菜单', 'admin.system.menu.postAdd', '0', '1', '', '2016-08-05 16:50:19', '2016-08-05 16:50:19');

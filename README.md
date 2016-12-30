@@ -7,6 +7,20 @@
 [![License](https://poser.pugx.org/scolib/admin/license)](https://packagist.org/packages/scolib/admin)
 
 
+
+Open your config/app.php and add the following to the providers array:
+```php
+Sco\Admin\Providers\AdminServiceProvider::class,
+Zizaco\Entrust\EntrustServiceProvider::class,
+```
+
+In the same config/app.php and add the following to the aliases array:
+
+```php
+'Entrust' => Zizaco\Entrust\EntrustFacade::class,
+
+```
+
 ```php
 php artisan vendor:publish --provider="Sco\Admin\Providers\AdminServiceProvider"
 php artisan migrate
@@ -48,16 +62,5 @@ class User
 }
 ```
 
-Open your config/app.php and add the following to the providers array:
-```php
-Zizaco\Entrust\EntrustServiceProvider::class,
-```
-
-In the same config/app.php and add the following to the aliases array:
-
-```php
-'Entrust' => Zizaco\Entrust\EntrustFacade::class,
-
-```
 
 
